@@ -236,8 +236,8 @@ for file in $(ls "${backup_dir}"/*.spa) ; do
 				-e "s/#444 /#oomox_selected_area_bg /gI" \
 				-e "s/#fff;/#oomox_accent_fg;/gI" \
 				-e "s/#fff /#oomox_accent_fg /gI" \
-				-e "s/ black / #oomox_area_bg /g" \
 				-e "s/ black;/ #oomox_area_bg;/g" \
+				-e "s/ black / #oomox_area_bg /g" \
 				-e "s/ gray / #oomox_main_bg /g" \
 				-e "s/ gray;/ #oomox_main_bg;/g" \
 				-e "s/ lightgray / #oomox_main_fg /g" \
@@ -248,9 +248,9 @@ for file in $(ls "${backup_dir}"/*.spa) ; do
 				-e "s/rgba(0, 0, 0, [0-9\.]\+)/oomox_cover_overlay/g" \
 				-e "s/rgba(0,0,0,[0-9\.]\+)/oomox_cover_overlay/g" \
 				\
+				-e "s/#fff/#oomox_accent_fg/gI" \
+				-e "s/#000/#oomox_area_bg/gI" \
 				"${css}"
-				#-e "s/#fff/#oomox_accent_fg/gI" \
-				#-e "s/#000/#oomox_area_bg/gI" \
 			if [[ $debug != '0' && $(grep "${debug}" "${css}") ]] >/dev/null ; then
 				echo '-------------------------------------------'
 				echo " -- ${css}"
