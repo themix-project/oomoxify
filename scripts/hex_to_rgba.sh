@@ -20,7 +20,7 @@ darker() {
 	g=$(hextoi ${b})
 	b=$(hextoi ${c})
 
-	printf 'rgba(%i, %i, %i, %0.2f)\n' ${r} ${g} ${b} ${alpha}
+	LC_NUMERIC="C" printf 'rgba(%i, %i, %i, %0.2f)\n' ${r} ${g} ${b} ${alpha}
 }
 
 darker $@
