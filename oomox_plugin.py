@@ -21,10 +21,6 @@ VALUE_FONT_NORMALIZE = 'normalize'
 VALUE_FONT_CUSTOM = 'custom'
 
 
-class SpotifyExportConfig(ExportConfig):
-    name = 'spotify'
-
-
 class SpotifyExportDialog(FileBasedExportDialog):
 
     export_config = None
@@ -104,11 +100,14 @@ class SpotifyExportDialog(FileBasedExportDialog):
             colorscheme=colorscheme,
             theme_name=theme_name
         )
-        self.export_config = SpotifyExportConfig({
-            OPTION_SPOTIFY_PATH: "/usr/share/spotify/Apps",
-            OPTION_FONT_NAME: "sans-serif",
-            OPTION_FONT_OPTIONS: VALUE_FONT_DEFAULT,
-        })
+        self.export_config = ExportConfig(
+            config_name='spotify',
+            default_config={
+                OPTION_SPOTIFY_PATH: "/usr/share/spotify/Apps",
+                OPTION_FONT_NAME: "sans-serif",
+                OPTION_FONT_OPTIONS: VALUE_FONT_DEFAULT,
+            }
+        )
 
         self.label.set_text(_("Please choose the font options:"))
 
