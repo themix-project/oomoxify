@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2115
 set -ueo pipefail
 
 root="$(readlink -f $(dirname "$0"))"
@@ -250,11 +251,12 @@ for file in $(ls "${backup_dir}"/*.spa) ; do
 				\
 				-e "s/#fff/#oomox_accent_fg/gI" \
 				-e "s/#000/#oomox_area_bg/gI" \
+				-e "s/border-radius[: ]\+500px/border-radius:${ROUNDNESS}px/gI" \
 				"${css}"
 			if [[ $debug != '0' && $(grep "${debug}" "${css}") ]] >/dev/null ; then
 				echo '-------------------------------------------'
 				echo " -- ${css}"
-				grep -B 3 -A 8 "${debug}" "${css}" || true
+				grep -B 3 -A 8 -i "${debug}" "${css}" || true
 			fi
 			sed -i \
 				-e "s/oomox_cover_overlay/${cover_overlay_color}/g" \
@@ -280,6 +282,9 @@ for file in $(ls "${backup_dir}"/*.spa) ; do
 				background-color: #${area_bg} !important;
 				color: #${main_fg} !important;
 			}
+			input, .button, button, button *, .button * {
+				border-radius: ${ROUNDNESS}px !important;
+			}
 			" >> "${css}"
 			if [ ! -z "${replace_font:-}" ] ; then
 				echo "
@@ -296,7 +301,6 @@ for file in $(ls "${backup_dir}"/*.spa) ; do
 				}
 				" >> "${css}"
 			fi
-			#border-radius: ${ROUNDNESS}px !important;
 			zip -0 "./${filename}" "${css}" > /dev/null
 		done
 		cd "${tmp_dir}"
