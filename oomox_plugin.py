@@ -144,13 +144,13 @@ class Plugin(OomoxExportPlugin):
         {
             'key': 'SPOTIFY_PROTO_BG',
             'type': 'color',
-            'fallback_key': 'MENU_BG',
+            'fallback_key': 'HDR_BG',
             'display_name': _('Spotify background'),
         },
         {
             'key': 'SPOTIFY_PROTO_FG',
             'type': 'color',
-            'fallback_key': 'MENU_FG',
+            'fallback_key': 'HDR_FG',
             'display_name': _('Spotify foreground'),
         },
         {
