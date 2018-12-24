@@ -101,6 +101,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
             colorscheme=colorscheme,
             theme_name=theme_name
         )
+        self.label.hide()
         self.export_config = ExportConfig(
             config_name='spotify',
             default_config={
@@ -110,9 +111,11 @@ class SpotifyExportDialog(FileBasedExportDialog):
             }
         )
 
-        self.label.set_markup('<b>' + _("Font Options") + '</b>')
-        self.label.set_justify(Gtk.Justification.LEFT)
-        self.label.set_alignment(0.0, 0.0)
+        export_options_headline = Gtk.Label()
+        export_options_headline.set_markup('<b>' + _("Font Options") + '</b>')
+        export_options_headline.set_justify(Gtk.Justification.LEFT)
+        export_options_headline.set_alignment(0.0, 0.0)
+        self.options_box.add(export_options_headline)
 
         self._init_radios()
 
@@ -135,7 +138,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
 class Plugin(OomoxExportPlugin):
 
     name = 'spotify'
-    display_name = _("Apply Spotif_y Theme")
+    display_name = _("Apply Spotif_y Theme…")
     export_dialog = SpotifyExportDialog
 
     theme_model_extra = [
