@@ -97,7 +97,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
     def __init__(self, transient_for, colorscheme, theme_name):
         super().__init__(
             transient_for=transient_for,
-            headline=_("Spotify options"),
+            headline=_("Spotify Options"),
             colorscheme=colorscheme,
             theme_name=theme_name
         )
@@ -110,7 +110,9 @@ class SpotifyExportDialog(FileBasedExportDialog):
             }
         )
 
-        self.label.set_text(_("Please choose the font options:"))
+        self.label.set_markup('<b>' + _("Font Options") + '</b>')
+        self.label.set_justify(Gtk.Justification.LEFT)
+        self.label.set_alignment(0.0, 0.0)
 
         self._init_radios()
 
@@ -133,7 +135,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
 class Plugin(OomoxExportPlugin):
 
     name = 'spotify'
-    display_name = _("Apply Spotif_y theme")
+    display_name = _("Apply Spotif_y Theme")
     export_dialog = SpotifyExportDialog
 
     theme_model_extra = [
@@ -145,18 +147,18 @@ class Plugin(OomoxExportPlugin):
             'key': 'SPOTIFY_PROTO_BG',
             'type': 'color',
             'fallback_key': 'HDR_BG',
-            'display_name': _('Spotify background'),
+            'display_name': _('Background'),
         },
         {
             'key': 'SPOTIFY_PROTO_FG',
             'type': 'color',
             'fallback_key': 'HDR_FG',
-            'display_name': _('Spotify foreground'),
+            'display_name': _('Foreground'),
         },
         {
             'key': 'SPOTIFY_PROTO_SEL',
             'type': 'color',
             'fallback_key': 'SEL_BG',
-            'display_name': _('Spotify accent color'),
+            'display_name': _('Accent Color'),
         },
     ]
