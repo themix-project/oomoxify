@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+install:
+  - docker image build ./ -t oomoxify
+
+script:
+  - docker run --entrypoint ./shellcheck.sh oomoxify:latest
