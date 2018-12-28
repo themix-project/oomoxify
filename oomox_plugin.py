@@ -3,8 +3,7 @@ import os
 
 from gi.repository import Gtk
 
-from oomox_gui.export_config import ExportConfig
-from oomox_gui.export_common import FileBasedExportDialog
+from oomox_gui.export_common import FileBasedExportDialog, ExportConfig
 from oomox_gui.plugin_api import OomoxExportPlugin
 from oomox_gui.i18n import _
 
