@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2115
+# shellcheck disable=SC2115,SC1090
 set -ueo pipefail
 
-root="$(readlink -f $(dirname "$0"))"
-SRC_PATH=${root}
+root="$(readlink -f "$(dirname "$0")")"
 
 
 spotify_apps_path="/usr/share/spotify/Apps"
@@ -30,16 +29,19 @@ examples:
 
 
 darker() {
-	${root}/scripts/darker.sh $@
+	"${root}"/scripts/darker.sh "$@"
 }
 is_dark() {
-	${root}/scripts/is_dark.sh $@
+	"${root}"/scripts/is_dark.sh "$@"
+}
+hex_to_rgba() {
+	"${root}"/scripts/hex_to_rgba.sh "$@"
 }
 
 debug="0"
 
 
-while [[ $# > 0 ]]
+while [[ $# -gt 0 ]]
 do
 	case ${1} in
 		-h|--help)
@@ -49,10 +51,10 @@ do
 		-f|--font)
 			replace_font="${2}"
 			shift
-			if [[ ! ${replace_font} = "sans-serif" ]] && \
-			   [[ ! ${replace_font} = "serif" ]] && \
-			   [[ ! ${replace_font} = "monospace" ]] && \
-			   [[ ! $(grep '"' <<< ${replace_font}) ]] \
+			if  [[ ! "${replace_font}" = "sans-serif" ]] && \
+				[[ ! "${replace_font}" = "serif" ]] && \
+				[[ ! "${replace_font}" = "monospace" ]] && \
+				grep -vq '"' <<< "${replace_font}" \
 			; then
 				replace_font='"'${replace_font}'"'
 			fi
@@ -89,7 +91,7 @@ fi
 
 if [[ ${THEME} == */* ]] || [[ ${THEME} == *.* ]] ; then
 	source "$THEME"
-	THEME=$(basename ${THEME})
+	THEME="$(basename "${THEME}")"
 else
 	source "${root}/colors/$THEME"
 fi
@@ -106,19 +108,19 @@ ROUNDNESS=${ROUNDNESS-500}
 main_bg="${SPOTIFY_MAIN_BG-$SPOTIFY_PROTO_BG}"
 
 fg_is_dark=0
-is_dark ${SPOTIFY_PROTO_FG} || fg_is_dark=$?
+is_dark "${SPOTIFY_PROTO_FG}" || fg_is_dark=$?
 if [[ ${fg_is_dark} -eq 0 ]] ; then
-	area_bg="${SPOTIFY_AREA_BG-$(darker ${SPOTIFY_PROTO_BG} -10)}"
-	selected_row_bg_fallback="$(darker ${area_bg} -8)"
-	selected_area_bg_fallback="$(darker ${area_bg} -14)"
-	main_fg_fallback="$(darker ${SPOTIFY_PROTO_FG} -18)"
-	accent_fg_fallback="$(darker ${SPOTIFY_PROTO_FG} 36)"
+	area_bg="${SPOTIFY_AREA_BG-$(darker "${SPOTIFY_PROTO_BG}" -10)}"
+	selected_row_bg_fallback="$(darker "${area_bg}" -8)"
+	selected_area_bg_fallback="$(darker "${area_bg}" -14)"
+	main_fg_fallback="$(darker "${SPOTIFY_PROTO_FG}" -18)"
+	accent_fg_fallback="$(darker "${SPOTIFY_PROTO_FG}" 36)"
 else
-	area_bg="${SPOTIFY_AREA_BG-$(darker ${SPOTIFY_PROTO_BG})}"
-	selected_row_bg_fallback="$(darker  ${area_bg} -20)"
-	selected_area_bg_fallback="$(darker ${area_bg} -28)"
-	main_fg_fallback="$(darker ${SPOTIFY_PROTO_FG} 18)"
-	accent_fg_fallback="$(darker ${SPOTIFY_PROTO_FG} -36)"
+	area_bg="${SPOTIFY_AREA_BG-$(darker "${SPOTIFY_PROTO_BG}")}"
+	selected_row_bg_fallback="$(darker  "${area_bg}" -20)"
+	selected_area_bg_fallback="$(darker "${area_bg}" -28)"
+	main_fg_fallback="$(darker "${SPOTIFY_PROTO_FG}" 18)"
+	accent_fg_fallback="$(darker "${SPOTIFY_PROTO_FG}" -36)"
 fi
 selected_row_bg="${SPOTIFY_SELECTED_ROW_BG-$selected_row_bg_fallback}"
 selected_area_bg="${SPOTIFY_SELECTED_AREA_BG-$selected_area_bg_fallback}"
@@ -129,18 +131,18 @@ accent_fg="${SPOTIFY_ACCENT_FG-$accent_fg_fallback}"
 hover_text="${SPOTIFY_HOVER_TEXT-$SPOTIFY_PROTO_SEL}"
 selected_text_color="${SPOTIFY_SELECTED_TEXT_COLOR-$SPOTIFY_PROTO_SEL}"
 selected_button_color_fallback="${SPOTIFY_PROTO_SEL}"
-hover_selection_color_fallback="$(darker ${SPOTIFY_PROTO_SEL} -25)"
-pressed_selection_color_fallback="$(darker ${SPOTIFY_PROTO_SEL} 20)"
+hover_selection_color_fallback="$(darker "${SPOTIFY_PROTO_SEL}" -25)"
+pressed_selection_color_fallback="$(darker "${SPOTIFY_PROTO_SEL}" 20)"
 selected_button_color="${SPOTIFY_SELECTED_BUTTON_COLOR-$selected_button_color_fallback}"
 hover_selection_color="${SPOTIFY_HOVER_SELECTION_COLOR-$hover_selection_color_fallback}"
 pressed_selection_color="${SPOTIFY_PRESSED_SELECTION_COLOR-$pressed_selection_color_fallback}"
 
 blue_blocks_color="${SPOTIFY_BLUE_BLOCKS-$BTN_BG}"
-blue_blocks_hover_color="$(darker ${blue_blocks_color} -15)"
+blue_blocks_hover_color="$(darker "${blue_blocks_color}" -15)"
 
 #top_and_button_bg="${SPOTIFY_TOP_AND_BTN_BG-$BTN_BG}"
 top_and_button_bg="${SPOTIFY_TOP_BTN_BG-$main_bg}"
-cover_overlay_color="$(${root}/scripts/hex_to_rgba.sh ${main_bg} 0.55)"
+cover_overlay_color="$(hex_to_rgba "${main_bg}" 0.55)"
 
 
 tmp_dir="$(mktemp -d)"
@@ -156,7 +158,7 @@ trap post_clean_up EXIT SIGHUP SIGINT SIGTERM
 backup_file="${backup_dir}/version.txt"
 spotify_version=$(spotify --version 2>&1 | grep "^Spotify" | cut -d' ' -f3 | tr -d ',')
 spotify_version_in_backup=$(cat "${backup_file}" || true)
-if [[ $spotify_version != $spotify_version_in_backup ]] ; then
+if [[ "${spotify_version}" != "${spotify_version_in_backup}" ]] ; then
 	if [[ -d "${backup_dir}" ]] ; then
 		rm -r "${backup_dir}"
 	fi
@@ -168,15 +170,15 @@ if [[ ! -d "${backup_dir}" ]] ; then
 fi
 
 cd "${root}"
-for file in $(ls "${backup_dir}"/*.spa) ; do
+for file in "${backup_dir}"/*.spa ; do
 	filename="$(basename "${file}")"
 	echo "${filename}"
 	cp "${file}" "${tmp_dir}/"
 	cd "${tmp_dir}"
 	unzip "./${filename}" > /dev/null
 	if [[ -d ./css/ ]] ; then
-		for css in $(ls ./css/*.css); do
-			if [ ! -z "${THEME:-}" ] ; then
+		for css in ./css/*.css ; do
+			if [ -n "${THEME:-}" ] ; then
 			sed -i \
 				-e "s/1ed660/oomox_selected_text_color/gI" \
 				-e "s/1ed760/oomox_selected_text_color/gI" \
@@ -258,7 +260,7 @@ for file in $(ls "${backup_dir}"/*.spa) ; do
 				-e "s/#000/#oomox_area_bg/gI" \
 				-e "s/border-radius[: ]\+500px/border-radius:${ROUNDNESS}px/gI" \
 				"${css}"
-			if [[ $debug != '0' && $(grep "${debug}" "${css}") ]] >/dev/null ; then
+			if [[ $debug != '0' ]] && grep -q "${debug}" "${css}" ; then
 				echo '-------------------------------------------'
 				echo " -- ${css}"
 				grep -B 3 -A 8 -i "${debug}" "${css}" || true
@@ -291,7 +293,7 @@ for file in $(ls "${backup_dir}"/*.spa) ; do
 				border-radius: ${ROUNDNESS}px !important;
 			}
 			" >> "${css}"
-			if [ ! -z "${replace_font:-}" ] ; then
+			if [ -n "${replace_font:-}" ] ; then
 				echo "
 				* {
 					font-family: ${replace_font} !important;
@@ -299,7 +301,7 @@ for file in $(ls "${backup_dir}"/*.spa) ; do
 				}
 				" >> "${css}"
 			fi
-			if [ ! -z "${fix_font_weight:-}" ] && [ -z "${replace_font:-}" ] ; then
+			if [ -n "${fix_font_weight:-}" ] && [ -z "${replace_font:-}" ] ; then
 				echo "
 				* {
 					font-weight: 400 !important;
@@ -315,8 +317,8 @@ for file in $(ls "${backup_dir}"/*.spa) ; do
 done
 
 PKEXEC="pkexec --disable-internal-agent"
-if [ ! -z "${gui:-}" ] ; then
-	if [ "$(which pkexec)" ] ; then
+if [ -n "${gui:-}" ] ; then
+	if [ "$(command -v pkexec)" ] ; then
 		priv_tool=${PKEXEC}
 	else
 		priv_tool="gksu"
@@ -328,9 +330,9 @@ fi
 fails_counter=0
 while true; do
 	exit_code=0
-	${priv_tool} cp "${output_dir}/"* "${spotify_apps_path}"/ 2>&1 | tee ${log_file} || exit_code=$?
+	${priv_tool} cp "${output_dir}/"* "${spotify_apps_path}"/ 2>&1 | tee "${log_file}" || exit_code=$?
 	if [ $exit_code -ne 0 ] ; then
-		if [ "${priv_tool}" = "${PKEXEC}" ] && [ "$(grep "No authentication agent found." ${log_file})" ] ; then
+		if [ "${priv_tool}" = "${PKEXEC}" ] && grep -q "No authentication agent found." "${log_file}" ; then
 			priv_tool="gksu"
 		else
 			fails_counter=$((fails_counter + 1))
