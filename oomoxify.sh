@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2115,SC1090
+# shellcheck disable=SC1090
 set -ueo pipefail
 
 root="$(readlink -f "$(dirname "$0")")"
@@ -313,7 +313,7 @@ for file in "${backup_dir}"/*.spa ; do
 		cd "${tmp_dir}"
 		mv "./${filename}" "${output_dir}/"
 	fi
-	rm "${tmp_dir}/"* -r
+	rm "${tmp_dir:?}/"* -r
 done
 
 PKEXEC="pkexec --disable-internal-agent"
