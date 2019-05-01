@@ -164,7 +164,7 @@ if [[ "${spotify_version}" != "${spotify_version_in_backup}" ]] ; then
 	fi
 fi
 if [[ ! -d "${backup_dir}" ]] ; then
-	mkdir "${backup_dir}"
+	mkdir -p "${backup_dir}"
 	cp -prf "${spotify_apps_path}"/*.spa "${backup_dir}/"
 	echo "${spotify_version}" > "${backup_file}"
 fi
