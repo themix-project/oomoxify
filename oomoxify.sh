@@ -140,6 +140,8 @@ pressed_selection_color="${SPOTIFY_PRESSED_SELECTION_COLOR-$pressed_selection_co
 blue_blocks_color="${SPOTIFY_BLUE_BLOCKS-$BTN_BG}"
 blue_blocks_hover_color="$(darker "${blue_blocks_color}" -15)"
 
+red_block_color="${SPOTIFY_RED:-${TERMINAL_COLOR1:-$SPOTIFY_PROTO_FG}}"
+
 #top_and_button_bg="${SPOTIFY_TOP_AND_BTN_BG-$BTN_BG}"
 top_and_button_bg="${SPOTIFY_TOP_BTN_BG-$main_bg}"
 cover_overlay_color="$(hex_to_rgba "${main_bg}" 0.55)"
@@ -226,6 +228,7 @@ for file in "${backup_dir}"/*.spa ; do
 				-e "s/ededed/oomox_main_fg/gI" \
 				\
 				-e "s/4687d6/oomox_blue_blocks/gI" \
+				-e "s/cd1a2b/oomox_red_color/gI" \
 				-e "s/rgba(70, 135, 214, [0-9\.]\+)/#oomox_blue_blocks/g" \
 				-e "s/2e77d0/oomox_blue_blocks_hover/gI" \
 				-e "s/rgba(51,153,255,[0-9\.]\+)/#oomox_blue_blocks_hover/g" \
@@ -282,6 +285,7 @@ for file in "${backup_dir}"/*.spa ; do
 				-e "s/oomox_sidebar_fg/${sidebar_fg}/gI" \
 				-e "s/oomox_blue_blocks/${blue_blocks_color}/gI" \
 				-e "s/oomox_blue_blocks_hover/${blue_blocks_hover_color}/gI" \
+				-e "s/oomox_red_color/${red_block_color}/gI" \
 				"${css}"
 			fi
 			echo "
