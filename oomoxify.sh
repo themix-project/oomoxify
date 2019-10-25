@@ -37,6 +37,9 @@ is_dark() {
 hex_to_rgba() {
 	"${root}"/scripts/hex_to_rgba.sh "$@"
 }
+mix () {
+	"${root}"/scripts/mix.sh "$@"
+}
 
 debug="0"
 
@@ -145,6 +148,7 @@ red_block_color="${SPOTIFY_RED:-${TERMINAL_COLOR1:-$SPOTIFY_PROTO_FG}}"
 #top_and_button_bg="${SPOTIFY_TOP_AND_BTN_BG-$BTN_BG}"
 top_and_button_bg="${SPOTIFY_TOP_BTN_BG-$main_bg}"
 cover_overlay_color="$(hex_to_rgba "${main_bg}" 0.55)"
+button_border_color="$(mix "${main_fg}" "${main_bg}" 0.5)"
 
 
 tmp_dir="$(mktemp -d)"
@@ -295,6 +299,25 @@ for file in "${backup_dir}"/*.spa ; do
 			}
 			input, .button, button, button *, .button * {
 				border-radius: ${ROUNDNESS}px !important;
+				box-shadow: unset !important;
+			}
+			.button:after, button:after, input:after {
+				box-shadow: unset !important;
+			}
+			.button-play,
+			.button-play * {
+				box-shadow: unset !important;
+			}
+			.button-green {
+				color: #${main_bg} !important;
+			}
+			.view-player .player-controls-container .controls .button-play,
+			.view-player .player-controls-container .controls .button-play * {
+				color: #${main_fg} !important;
+				box-shadow: unset !important;
+			}
+			.view-player .player-controls-container .controls .button-play {
+				border: 1px solid #${button_border_color} !important;
 			}
 			" >> "${css}"
 			if [ -n "${replace_font:-}" ] ; then
