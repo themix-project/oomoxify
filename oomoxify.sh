@@ -202,18 +202,18 @@ for file in "${backup_dir}"/*.spa ; do
 				-e "s/121212/oomox_main_bg/g" \
 				-e "s/rgba(18, 18, 18, [0-9\.]\+)/#oomox_main_bg/g" \
 				-e "s/181818/oomox_area_bg/g" \
-				-e "s/rgba(18,19,20,[0-9\.]\+)/#oomox_area_bg/g" \
-				-e "s/000000/oomox_area_bg/g" \
+				-e "s/rgba(18,19,20,[0-9\.]\+)/#oomox_area_bg88/g" \
+				-e "s/#000000/#oomox_area_bg/g" \
 				-e "s/333333/oomox_selected_row_bg/g" \
 				-e "s/3f3f3f/oomox_selected_row_bg/g" \
 				-e "s/535353/oomox_selected_row_bg/g" \
 				-e "s/404040/oomox_selected_area_bg/g" \
-				-e "s/rgba(80,55,80,[0-9\.]\+)/#oomox_area_bg/g" \
-				-e "s/rgba(40, 40, 40, [0-9\.]\+)/#oomox_area_bg/g" \
-				-e "s/rgba(40,40,40,[0-9\.]\+)/#oomox_area_bg/g" \
-				-e "s/rgba(24, 24, 24, 0)/#oomox_area_bg/g" \
-				-e "s/rgba(24, 24, 24, 0\.[6,8])/#oomox_area_bg/g" \
-				-e "s/rgba(18, 19, 20, [0-9\.]\+)/#oomox_area_bg/g" \
+				-e "s/rgba(80,55,80,[0-9\.]\+)/#oomox_area_bg88/g" \
+				-e "s/rgba(40, 40, 40, [0-9\.]\+)/#oomox_area_bg88/g" \
+				-e "s/rgba(40,40,40,[0-9\.]\+)/#oomox_area_bg88/g" \
+				-e "s/rgba(24, 24, 24, 0)/#oomox_area_bg44/g" \
+				-e "s/rgba(24, 24, 24, 0\.[6,8])/#oomox_area_bg88/g" \
+				-e "s/rgba(18, 19, 20, [0-9\.]\+)/#oomox_area_bg88/g" \
 				-e "s/#000011/#oomox_area_bg/g" \
 				-e "s/#0a1a2d/#oomox_area_bg/g" \
 				\
@@ -297,6 +297,7 @@ for file in "${backup_dir}"/*.spa ; do
 				background-color: #${area_bg} !important;
 				color: #${main_fg} !important;
 			}
+
 			input, .button, button, button *, .button * {
 				border-radius: ${ROUNDNESS}px !important;
 				box-shadow: unset !important;
@@ -315,9 +316,20 @@ for file in "${backup_dir}"/*.spa ; do
 			.view-player .player-controls-container .controls .button-play * {
 				color: #${main_fg} !important;
 			}
+			/*.button,*/
 			.view-player .player-controls-container .controls .button-play {
 				border: 1px solid #${button_border_color} !important;
 				box-shadow: unset !important;
+			}
+
+			/* remove scrollbar buttons to match gtk3 themes appearance: */
+			::-webkit-scrollbar-button {
+				display: none !important;
+			}
+
+			/* kill fucking ugly gray gradient!!! */
+			.Header__background-color{
+				background: #${main_bg} !important;
 			}
 			" >> "${css}"
 			if [ -n "${replace_font:-}" ] ; then
