@@ -309,7 +309,7 @@ for file in "${backup_dir}"/*.spa ; do
 				box-shadow: unset !important;
 			}
 			.button-green {
-				color: #${main_bg} !important;
+				color: #${SEL_FG:-main_bg} !important;
 			}
 			.view-player .player-controls-container .controls .button-play,
 			.view-player .player-controls-container .controls .button-play * {
