@@ -309,8 +309,9 @@ for file in "${backup_dir}"/*.spa ; do
 			.button-play * {
 				box-shadow: unset !important;
 			}
-			.button-green {
-				color: #${SEL_FG:-main_bg} !important;
+			.button-green,
+			.Button--style-green {
+				color: #${SEL_FG:-$main_bg} !important;
 			}
 			.view-player .player-controls-container .controls .button-play,
 			.view-player .player-controls-container .controls .button-play * {
@@ -330,6 +331,12 @@ for file in "${backup_dir}"/*.spa ; do
 			/* kill fucking ugly gray gradient!!! */
 			.Header__background-color{
 				background: #${main_bg} !important;
+			}
+			.Header__background-overlay {
+				opacity: 0;
+			}
+			#view-player .album-art__background {
+				background-color: #$(mix "${SPOTIFY_PROTO_SEL:-$SEL_BG}" "${main_bg}" 0.5)66;
 			}
 			" >> "${css}"
 			if [ -n "${replace_font:-}" ] ; then
