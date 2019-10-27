@@ -314,10 +314,10 @@ for file in "${backup_dir}"/*.spa ; do
 			.view-player .player-controls-container .controls .button-play,
 			.view-player .player-controls-container .controls .button-play * {
 				color: #${main_fg} !important;
-				box-shadow: unset !important;
 			}
 			.view-player .player-controls-container .controls .button-play {
 				border: 1px solid #${button_border_color} !important;
+				box-shadow: unset !important;
 			}
 			" >> "${css}"
 			if [ -n "${replace_font:-}" ] ; then
