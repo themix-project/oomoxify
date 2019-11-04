@@ -145,7 +145,6 @@ blue_blocks_hover_color="$(darker "${blue_blocks_color}" -15)"
 
 red_block_color="${SPOTIFY_RED:-${TERMINAL_COLOR1:-$SPOTIFY_PROTO_FG}}"
 
-#top_and_button_bg="${SPOTIFY_TOP_AND_BTN_BG-$BTN_BG}"
 top_and_button_bg="${SPOTIFY_TOP_BTN_BG-$main_bg}"
 cover_overlay_color="$(hex_to_rgba "${main_bg}" 0.55)"
 button_border_color="$(mix "${main_fg}" "${main_bg}" 0.5)"
