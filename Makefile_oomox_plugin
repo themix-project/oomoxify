@@ -23,8 +23,8 @@ install:
 	mkdir -p $(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)/
 	cp -prf \
         ./oomox_plugin.py \
-		./schemes/ \
-		./templates/ \
+		./oomoxify.sh \
+		./scripts/ \
 			$(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)/
 
 all: install
