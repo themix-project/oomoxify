@@ -181,7 +181,7 @@ for file in "${backup_dir}"/*.spa ; do
 	cp "${file}" "${tmp_dir}/"
 	cd "${tmp_dir}"
 	unzip "./${filename}" > /dev/null
-	if [[ -d ./css/ ]] ; then
+	if [[ -d ./css/ ]] && [[ ! -z "$(ls ./css)" ]]; then
 		for css in ./css/*.css ; do
 			if [ -n "${THEME:-}" ] ; then
 			sed -i \
