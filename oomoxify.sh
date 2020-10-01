@@ -182,6 +182,7 @@ for file in "${backup_dir}"/*.spa ; do
 	cd "${tmp_dir}"
 	unzip "./${filename}" > /dev/null
 	if [[ -d ./css/ ]] ; then
+		shopt -s nullglob
 		for css in ./css/*.css ; do
 			if [ -n "${THEME:-}" ] ; then
 			sed -i \
