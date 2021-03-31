@@ -175,12 +175,12 @@ if [[ ! -d "${backup_dir}" ]] ; then
 fi
 
 cd "${root}"
-for file in "${backup_dir}"/*.spa ; do
-	filename="$(basename "${file}")"
-	echo "${filename}"
-	cp "${file}" "${tmp_dir}/"
+for archive_path in "${backup_dir}"/*.spa ; do
+	archive_name="$(basename "${archive_path}")"
+	echo "${archive_name}"
+	cp "${archive_path}" "${tmp_dir}/"
 	cd "${tmp_dir}"
-	unzip "./${filename}" > /dev/null
+	unzip "./${archive_name}" > /dev/null
 	shopt -s nullglob
 	ls -l
 	for css in .{,/*}/*.css ; do
@@ -355,10 +355,10 @@ for file in "${backup_dir}"/*.spa ; do
 			}
 			" >> "${css}"
 		fi
-		zip -0 "./${filename}" "${css}" > /dev/null
+		zip -0 "./${archive_name}" "${css}" > /dev/null
 	done
 	cd "${tmp_dir}"
-	mv "./${filename}" "${output_dir}/"
+	mv "./${archive_name}" "${output_dir}/"
 	rm "${tmp_dir:?}/"* -r
 done
 
