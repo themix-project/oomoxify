@@ -243,6 +243,8 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			-e "s/rgba(25,20,20,[0-9\.]\+)/#oomox_top_and_button_bg/g" \
 			-e "s/rgba(160, 160, 160, [0-9\.]\+)/#oomox_main_fg/g" \
 			-e "s/rgba(255, 255, 255, ...)/#oomox_main_fg/gI" \
+			-e "s/hsla(0,0%,100%,.9)/#oomox_main_fg/gI" \
+			-e "s/hsla(0,0%,100%,.7)/#oomox_main_fg/gI" \
 			-e "s/#ddd;/#oomox_main_fg;/g" \
 			-e "s/#000;/#oomox_area_bg;/g" \
 			-e "s/#000 /#oomox_area_bg /g" \
@@ -338,6 +340,17 @@ for archive_path in "${backup_dir}"/*.spa ; do
 		}
 		#view-player .album-art__background {
 			background-color: #$(mix "${SPOTIFY_PROTO_SEL:-$SEL_BG}" "${main_bg}" 0.5)66;
+		}
+
+		/* added for 1.1.55.498: */
+		button[data-testid=\"play-button\"],
+		button[data-testid=\"control-button-play\"],
+		button[data-testid=\"control-button-pause\"] {
+			color: #${BTN_FG:-$main_bg} !important;
+			background-color: #${BTN_BG:-$main_fg} !important;
+		}
+		div[role='gridcell'] div img {
+			filter: grayscale(1);
 		}
 		" >> "${css_filepath}"
 		if [ -n "${replace_font:-}" ] ; then
