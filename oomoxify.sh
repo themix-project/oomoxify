@@ -390,4 +390,7 @@ while true; do
 		break
 	fi
 done
+
+echo
+echo "== DONE"
 exit ${exit_code}
