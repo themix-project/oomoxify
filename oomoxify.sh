@@ -23,7 +23,7 @@ options:
 examples:
 	$0 monovedek
 	$0 -f \"Fantasque Sans Mono\" ./colors/gnome-colors/shiki-noble
-	$0 -o /opt/spotify/Apps ./colors/retro/twg"
+	$0 -s /opt/spotify/Apps ./colors/retro/twg"
 	exit 1
 }
 
