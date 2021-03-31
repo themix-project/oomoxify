@@ -4,8 +4,8 @@ services:
   - docker
 
 install:
+  - sed -i -e 's|FROM archlinux/base|FROM actionless/pikaur|' Dockerfile
   - docker image build ./ -t oomoxify
 
 script:
-  - sed -i -e 's|FROM archlinux/base|FROM actionless/pikaur|' Dockerfile
   - docker run --entrypoint ./shellcheck.sh oomoxify:latest
