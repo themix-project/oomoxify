@@ -182,9 +182,7 @@ for archive_path in "${backup_dir}"/*.spa ; do
 	cd "${tmp_dir}"
 	unzip "./${archive_name}" > /dev/null
 	shopt -s nullglob
-	ls -l
-	for css in .{,/*}/*.css ; do
-		echo "$css"
+	for css_filepath in .{,/*}/*.css ; do
 		if [ -n "${THEME:-}" ] ; then
 		sed -i \
 			-e "s/1ed660/oomox_selected_text_color/gI" \
@@ -267,11 +265,11 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			-e "s/#fff/#oomox_accent_fg/gI" \
 			-e "s/#000/#oomox_area_bg/gI" \
 			-e "s/border-radius[: ]\+500px/border-radius:${ROUNDNESS}px/gI" \
-			"${css}"
-		if [[ $debug != '0' ]] && grep -q "${debug}" "${css}" ; then
+			"${css_filepath}"
+		if [[ $debug != '0' ]] && grep -q "${debug}" "${css_filepath}" ; then
 			echo '-------------------------------------------'
-			echo " -- ${css}"
-			grep -B 3 -A 8 -i "${debug}" "${css}" || true
+			echo " -- ${css_filepath}"
+			grep -B 3 -A 8 -i "${debug}" "${css_filepath}" || true
 		fi
 		sed -i \
 			-e "s/oomox_cover_overlay/${cover_overlay_color}/g" \
@@ -291,7 +289,7 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			-e "s/oomox_blue_blocks/${blue_blocks_color}/gI" \
 			-e "s/oomox_blue_blocks_hover/${blue_blocks_hover_color}/gI" \
 			-e "s/oomox_red_color/${red_block_color}/gI" \
-			"${css}"
+			"${css_filepath}"
 		fi
 		echo "
 		.SearchInput__input {
@@ -339,23 +337,23 @@ for archive_path in "${backup_dir}"/*.spa ; do
 		#view-player .album-art__background {
 			background-color: #$(mix "${SPOTIFY_PROTO_SEL:-$SEL_BG}" "${main_bg}" 0.5)66;
 		}
-		" >> "${css}"
+		" >> "${css_filepath}"
 		if [ -n "${replace_font:-}" ] ; then
 			echo "
 			* {
 				font-family: ${replace_font} !important;
 				font-weight: 400 !important;
 			}
-			" >> "${css}"
+			" >> "${css_filepath}"
 		fi
 		if [ -n "${fix_font_weight:-}" ] && [ -z "${replace_font:-}" ] ; then
 			echo "
 			* {
 				font-weight: 400 !important;
 			}
-			" >> "${css}"
+			" >> "${css_filepath}"
 		fi
-		zip -0 "./${archive_name}" "${css}" > /dev/null
+		zip -0 "./${archive_name}" "${css_filepath}" > /dev/null
 	done
 	cd "${tmp_dir}"
 	mv "./${archive_name}" "${output_dir}/"
