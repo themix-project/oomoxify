@@ -181,184 +181,184 @@ for file in "${backup_dir}"/*.spa ; do
 	cp "${file}" "${tmp_dir}/"
 	cd "${tmp_dir}"
 	unzip "./${filename}" > /dev/null
-	if [[ -d ./css/ ]] ; then
-		shopt -s nullglob
-		for css in ./css/*.css ; do
-			if [ -n "${THEME:-}" ] ; then
-			sed -i \
-				-e "s/1ed660/oomox_selected_text_color/gI" \
-				-e "s/1ed760/oomox_selected_text_color/gI" \
-				-e "s/1db954/oomox_hover_selection_color/gI" \
-				-e "s/1df369/oomox_hover_selection_color/gI" \
-				-e "s/1df269/oomox_hover_selection_color/gI" \
-				-e "s/1cd85e/oomox_hover_selection_color/gI" \
-				-e "s/1bd85e/oomox_hover_selection_color/gI" \
-				-e "s/18ac4d/oomox_selected_button_color/gI" \
-				-e "s/18ab4d/oomox_selected_button_color/gI" \
-				-e "s/179443/oomox_pressed_selection_color/gI" \
-				-e "s/14833B/oomox_pressed_selection_color/gI" \
-				\
-				-e "s/282828/oomox_main_bg/g" \
-				-e "s/121212/oomox_main_bg/g" \
-				-e "s/rgba(18, 18, 18, [0-9\.]\+)/#oomox_main_bg/g" \
-				-e "s/181818/oomox_area_bg/g" \
-				-e "s/rgba(18,19,20,[0-9\.]\+)/#oomox_area_bg88/g" \
-				-e "s/#000000/#oomox_area_bg/g" \
-				-e "s/333333/oomox_selected_row_bg/g" \
-				-e "s/3f3f3f/oomox_selected_row_bg/g" \
-				-e "s/535353/oomox_selected_row_bg/g" \
-				-e "s/404040/oomox_selected_area_bg/g" \
-				-e "s/rgba(80,55,80,[0-9\.]\+)/#oomox_area_bg88/g" \
-				-e "s/rgba(40, 40, 40, [0-9\.]\+)/#oomox_area_bg88/g" \
-				-e "s/rgba(40,40,40,[0-9\.]\+)/#oomox_area_bg88/g" \
-				-e "s/rgba(24, 24, 24, 0)/#oomox_area_bg44/g" \
-				-e "s/rgba(24, 24, 24, 0\.[6,8])/#oomox_area_bg88/g" \
-				-e "s/rgba(18, 19, 20, [0-9\.]\+)/#oomox_area_bg88/g" \
-				-e "s/#000011/#oomox_area_bg/g" \
-				-e "s/#0a1a2d/#oomox_area_bg/g" \
-				\
-				-e "s/ffffff/oomox_accent_fg/gI" \
-				-e "s/f8f8f7/oomox_hover_text/gI" \
-				-e "s/fcfcfc/oomox_hover_text/gI" \
-				-e "s/d9d9d9/oomox_hover_text/gI" \
-				-e "s/adafb2/oomox_sidebar_fg/gI" \
-				-e "s/c8c8c8/oomox_sidebar_fg/gI" \
-				-e "s/a0a0a0/oomox_sidebar_fg/gI" \
-				-e "s/bec0bb/oomox_sidebar_fg/gI" \
-				-e "s/bababa/oomox_sidebar_fg/gI" \
-				-e "s/b3b3b3/oomox_sidebar_fg/gI" \
-				-e "s/rgba(179, 179, 179, [0-9\.]\+)/#oomox_sidebar_fg/g" \
-				-e "s/cccccc/oomox_main_fg/gI" \
-				-e "s/ededed/oomox_main_fg/gI" \
-				\
-				-e "s/4687d6/oomox_blue_blocks/gI" \
-				-e "s/cd1a2b/oomox_red_color/gI" \
-				-e "s/rgba(70, 135, 214, [0-9\.]\+)/#oomox_blue_blocks/g" \
-				-e "s/2e77d0/oomox_blue_blocks_hover/gI" \
-				-e "s/rgba(51,153,255,[0-9\.]\+)/#oomox_blue_blocks_hover/g" \
-				-e "s/rgba(30,50,100,[0-9\.]\+)/#oomox_blue_blocks_hover/g" \
-				\
-				-e "s/rgba(24, 24, 24, [0-9\.]\+)/#oomox_top_and_button_bg/g" \
-				-e "s/rgba(25,20,20,[0-9\.]\+)/#oomox_top_and_button_bg/g" \
-				-e "s/rgba(160, 160, 160, [0-9\.]\+)/#oomox_main_fg/g" \
-				-e "s/rgba(255, 255, 255, ...)/#oomox_main_fg/gI" \
-				-e "s/#ddd;/#oomox_main_fg;/g" \
-				-e "s/#000;/#oomox_area_bg;/g" \
-				-e "s/#000 /#oomox_area_bg /g" \
-				-e "s/#333;/#oomox_selected_row_bg;/gI" \
-				-e "s/#333 /#oomox_selected_row_bg /gI" \
-				-e "s/#444;/#oomox_selected_area_bg;/gI" \
-				-e "s/#444 /#oomox_selected_area_bg /gI" \
-				-e "s/#fff;/#oomox_accent_fg;/gI" \
-				-e "s/#fff /#oomox_accent_fg /gI" \
-				-e "s/ black;/ #oomox_area_bg;/g" \
-				-e "s/ black / #oomox_area_bg /g" \
-				-e "s/ gray / #oomox_main_bg /g" \
-				-e "s/ gray;/ #oomox_main_bg;/g" \
-				-e "s/ lightgray / #oomox_main_fg /g" \
-				-e "s/ lightgray;/ #oomox_main_fg;/g" \
-				-e "s/ white;/ #oomox_accent_fg;/gI" \
-				-e "s/ white / #oomox_accent_fg /gI" \
-				\
-				-e "s/rgba(0, 0, 0, [0-9\.]\+)/oomox_cover_overlay/g" \
-				-e "s/rgba(0,0,0,[0-9\.]\+)/oomox_cover_overlay/g" \
-				\
-				-e "s/#fff/#oomox_accent_fg/gI" \
-				-e "s/#000/#oomox_area_bg/gI" \
-				-e "s/border-radius[: ]\+500px/border-radius:${ROUNDNESS}px/gI" \
-				"${css}"
-			if [[ $debug != '0' ]] && grep -q "${debug}" "${css}" ; then
-				echo '-------------------------------------------'
-				echo " -- ${css}"
-				grep -B 3 -A 8 -i "${debug}" "${css}" || true
-			fi
-			sed -i \
-				-e "s/oomox_cover_overlay/${cover_overlay_color}/g" \
-				-e "s/oomox_top_and_button_bg/${top_and_button_bg}/g" \
-				-e "s/oomox_main_bg/${main_bg}/g" \
-				-e "s/oomox_area_bg/${area_bg}/g" \
-				-e "s/oomox_selected_row_bg/${selected_row_bg}/g" \
-				-e "s/oomox_selected_area_bg/${selected_area_bg}/g" \
-				-e "s/oomox_accent_fg/${accent_fg}/gI" \
-				-e "s/oomox_hover_text/${hover_text}/gI" \
-				-e "s/oomox_selected_text_color/${selected_text_color}/gI" \
-				-e "s/oomox_selected_button_color/${selected_button_color}/gI" \
-				-e "s/oomox_hover_selection_color/${hover_selection_color}/gI" \
-				-e "s/oomox_pressed_selection_color/${pressed_selection_color}/gI" \
-				-e "s/oomox_main_fg/${main_fg}/gI" \
-				-e "s/oomox_sidebar_fg/${sidebar_fg}/gI" \
-				-e "s/oomox_blue_blocks/${blue_blocks_color}/gI" \
-				-e "s/oomox_blue_blocks_hover/${blue_blocks_hover_color}/gI" \
-				-e "s/oomox_red_color/${red_block_color}/gI" \
-				"${css}"
-			fi
+	shopt -s nullglob
+	ls -l
+	for css in .{,/*}/*.css ; do
+		echo "$css"
+		if [ -n "${THEME:-}" ] ; then
+		sed -i \
+			-e "s/1ed660/oomox_selected_text_color/gI" \
+			-e "s/1ed760/oomox_selected_text_color/gI" \
+			-e "s/1db954/oomox_hover_selection_color/gI" \
+			-e "s/1df369/oomox_hover_selection_color/gI" \
+			-e "s/1df269/oomox_hover_selection_color/gI" \
+			-e "s/1cd85e/oomox_hover_selection_color/gI" \
+			-e "s/1bd85e/oomox_hover_selection_color/gI" \
+			-e "s/18ac4d/oomox_selected_button_color/gI" \
+			-e "s/18ab4d/oomox_selected_button_color/gI" \
+			-e "s/179443/oomox_pressed_selection_color/gI" \
+			-e "s/14833B/oomox_pressed_selection_color/gI" \
+			\
+			-e "s/282828/oomox_main_bg/g" \
+			-e "s/121212/oomox_main_bg/g" \
+			-e "s/rgba(18, 18, 18, [0-9\.]\+)/#oomox_main_bg/g" \
+			-e "s/181818/oomox_area_bg/g" \
+			-e "s/rgba(18,19,20,[0-9\.]\+)/#oomox_area_bg88/g" \
+			-e "s/#000000/#oomox_area_bg/g" \
+			-e "s/333333/oomox_selected_row_bg/g" \
+			-e "s/3f3f3f/oomox_selected_row_bg/g" \
+			-e "s/535353/oomox_selected_row_bg/g" \
+			-e "s/404040/oomox_selected_area_bg/g" \
+			-e "s/rgba(80,55,80,[0-9\.]\+)/#oomox_area_bg88/g" \
+			-e "s/rgba(40, 40, 40, [0-9\.]\+)/#oomox_area_bg88/g" \
+			-e "s/rgba(40,40,40,[0-9\.]\+)/#oomox_area_bg88/g" \
+			-e "s/rgba(24, 24, 24, 0)/#oomox_area_bg44/g" \
+			-e "s/rgba(24, 24, 24, 0\.[6,8])/#oomox_area_bg88/g" \
+			-e "s/rgba(18, 19, 20, [0-9\.]\+)/#oomox_area_bg88/g" \
+			-e "s/#000011/#oomox_area_bg/g" \
+			-e "s/#0a1a2d/#oomox_area_bg/g" \
+			\
+			-e "s/ffffff/oomox_accent_fg/gI" \
+			-e "s/f8f8f7/oomox_hover_text/gI" \
+			-e "s/fcfcfc/oomox_hover_text/gI" \
+			-e "s/d9d9d9/oomox_hover_text/gI" \
+			-e "s/adafb2/oomox_sidebar_fg/gI" \
+			-e "s/c8c8c8/oomox_sidebar_fg/gI" \
+			-e "s/a0a0a0/oomox_sidebar_fg/gI" \
+			-e "s/bec0bb/oomox_sidebar_fg/gI" \
+			-e "s/bababa/oomox_sidebar_fg/gI" \
+			-e "s/b3b3b3/oomox_sidebar_fg/gI" \
+			-e "s/rgba(179, 179, 179, [0-9\.]\+)/#oomox_sidebar_fg/g" \
+			-e "s/cccccc/oomox_main_fg/gI" \
+			-e "s/ededed/oomox_main_fg/gI" \
+			\
+			-e "s/4687d6/oomox_blue_blocks/gI" \
+			-e "s/cd1a2b/oomox_red_color/gI" \
+			-e "s/rgba(70, 135, 214, [0-9\.]\+)/#oomox_blue_blocks/g" \
+			-e "s/2e77d0/oomox_blue_blocks_hover/gI" \
+			-e "s/rgba(51,153,255,[0-9\.]\+)/#oomox_blue_blocks_hover/g" \
+			-e "s/rgba(30,50,100,[0-9\.]\+)/#oomox_blue_blocks_hover/g" \
+			\
+			-e "s/rgba(24, 24, 24, [0-9\.]\+)/#oomox_top_and_button_bg/g" \
+			-e "s/rgba(25,20,20,[0-9\.]\+)/#oomox_top_and_button_bg/g" \
+			-e "s/rgba(160, 160, 160, [0-9\.]\+)/#oomox_main_fg/g" \
+			-e "s/rgba(255, 255, 255, ...)/#oomox_main_fg/gI" \
+			-e "s/#ddd;/#oomox_main_fg;/g" \
+			-e "s/#000;/#oomox_area_bg;/g" \
+			-e "s/#000 /#oomox_area_bg /g" \
+			-e "s/#333;/#oomox_selected_row_bg;/gI" \
+			-e "s/#333 /#oomox_selected_row_bg /gI" \
+			-e "s/#444;/#oomox_selected_area_bg;/gI" \
+			-e "s/#444 /#oomox_selected_area_bg /gI" \
+			-e "s/#fff;/#oomox_accent_fg;/gI" \
+			-e "s/#fff /#oomox_accent_fg /gI" \
+			-e "s/ black;/ #oomox_area_bg;/g" \
+			-e "s/ black / #oomox_area_bg /g" \
+			-e "s/ gray / #oomox_main_bg /g" \
+			-e "s/ gray;/ #oomox_main_bg;/g" \
+			-e "s/ lightgray / #oomox_main_fg /g" \
+			-e "s/ lightgray;/ #oomox_main_fg;/g" \
+			-e "s/ white;/ #oomox_accent_fg;/gI" \
+			-e "s/ white / #oomox_accent_fg /gI" \
+			\
+			-e "s/rgba(0, 0, 0, [0-9\.]\+)/oomox_cover_overlay/g" \
+			-e "s/rgba(0,0,0,[0-9\.]\+)/oomox_cover_overlay/g" \
+			\
+			-e "s/#fff/#oomox_accent_fg/gI" \
+			-e "s/#000/#oomox_area_bg/gI" \
+			-e "s/border-radius[: ]\+500px/border-radius:${ROUNDNESS}px/gI" \
+			"${css}"
+		if [[ $debug != '0' ]] && grep -q "${debug}" "${css}" ; then
+			echo '-------------------------------------------'
+			echo " -- ${css}"
+			grep -B 3 -A 8 -i "${debug}" "${css}" || true
+		fi
+		sed -i \
+			-e "s/oomox_cover_overlay/${cover_overlay_color}/g" \
+			-e "s/oomox_top_and_button_bg/${top_and_button_bg}/g" \
+			-e "s/oomox_main_bg/${main_bg}/g" \
+			-e "s/oomox_area_bg/${area_bg}/g" \
+			-e "s/oomox_selected_row_bg/${selected_row_bg}/g" \
+			-e "s/oomox_selected_area_bg/${selected_area_bg}/g" \
+			-e "s/oomox_accent_fg/${accent_fg}/gI" \
+			-e "s/oomox_hover_text/${hover_text}/gI" \
+			-e "s/oomox_selected_text_color/${selected_text_color}/gI" \
+			-e "s/oomox_selected_button_color/${selected_button_color}/gI" \
+			-e "s/oomox_hover_selection_color/${hover_selection_color}/gI" \
+			-e "s/oomox_pressed_selection_color/${pressed_selection_color}/gI" \
+			-e "s/oomox_main_fg/${main_fg}/gI" \
+			-e "s/oomox_sidebar_fg/${sidebar_fg}/gI" \
+			-e "s/oomox_blue_blocks/${blue_blocks_color}/gI" \
+			-e "s/oomox_blue_blocks_hover/${blue_blocks_hover_color}/gI" \
+			-e "s/oomox_red_color/${red_block_color}/gI" \
+			"${css}"
+		fi
+		echo "
+		.SearchInput__input {
+			background-color: #${area_bg} !important;
+			color: #${main_fg} !important;
+		}
+
+		input, .button, button, button *, .button * {
+			border-radius: ${ROUNDNESS}px !important;
+			box-shadow: unset !important;
+		}
+		.button:after, button:after, input:after {
+			box-shadow: unset !important;
+		}
+		.button-play,
+		.button-play * {
+			box-shadow: unset !important;
+		}
+		.button-green,
+		.Button--style-green {
+			color: #${SEL_FG:-$main_bg} !important;
+		}
+		.view-player .player-controls-container .controls .button-play,
+		.view-player .player-controls-container .controls .button-play * {
+			color: #${main_fg} !important;
+		}
+		/*.button,*/
+		.view-player .player-controls-container .controls .button-play {
+			border: 1px solid #${button_border_color} !important;
+			box-shadow: unset !important;
+		}
+
+		/* remove scrollbar buttons to match gtk3 themes appearance: */
+		::-webkit-scrollbar-button {
+			display: none !important;
+		}
+
+		/* kill fucking ugly gray gradient!!! */
+		.Header__background-color{
+			background: #${main_bg} !important;
+		}
+		.Header__background-overlay {
+			opacity: 0;
+		}
+		#view-player .album-art__background {
+			background-color: #$(mix "${SPOTIFY_PROTO_SEL:-$SEL_BG}" "${main_bg}" 0.5)66;
+		}
+		" >> "${css}"
+		if [ -n "${replace_font:-}" ] ; then
 			echo "
-			.SearchInput__input {
-				background-color: #${area_bg} !important;
-				color: #${main_fg} !important;
-			}
-
-			input, .button, button, button *, .button * {
-				border-radius: ${ROUNDNESS}px !important;
-				box-shadow: unset !important;
-			}
-			.button:after, button:after, input:after {
-				box-shadow: unset !important;
-			}
-			.button-play,
-			.button-play * {
-				box-shadow: unset !important;
-			}
-			.button-green,
-			.Button--style-green {
-				color: #${SEL_FG:-$main_bg} !important;
-			}
-			.view-player .player-controls-container .controls .button-play,
-			.view-player .player-controls-container .controls .button-play * {
-				color: #${main_fg} !important;
-			}
-			/*.button,*/
-			.view-player .player-controls-container .controls .button-play {
-				border: 1px solid #${button_border_color} !important;
-				box-shadow: unset !important;
-			}
-
-			/* remove scrollbar buttons to match gtk3 themes appearance: */
-			::-webkit-scrollbar-button {
-				display: none !important;
-			}
-
-			/* kill fucking ugly gray gradient!!! */
-			.Header__background-color{
-				background: #${main_bg} !important;
-			}
-			.Header__background-overlay {
-				opacity: 0;
-			}
-			#view-player .album-art__background {
-				background-color: #$(mix "${SPOTIFY_PROTO_SEL:-$SEL_BG}" "${main_bg}" 0.5)66;
+			* {
+				font-family: ${replace_font} !important;
+				font-weight: 400 !important;
 			}
 			" >> "${css}"
-			if [ -n "${replace_font:-}" ] ; then
-				echo "
-				* {
-					font-family: ${replace_font} !important;
-					font-weight: 400 !important;
-				}
-				" >> "${css}"
-			fi
-			if [ -n "${fix_font_weight:-}" ] && [ -z "${replace_font:-}" ] ; then
-				echo "
-				* {
-					font-weight: 400 !important;
-				}
-				" >> "${css}"
-			fi
-			zip -0 "./${filename}" "${css}" > /dev/null
-		done
-		cd "${tmp_dir}"
-		mv "./${filename}" "${output_dir}/"
-	fi
+		fi
+		if [ -n "${fix_font_weight:-}" ] && [ -z "${replace_font:-}" ] ; then
+			echo "
+			* {
+				font-weight: 400 !important;
+			}
+			" >> "${css}"
+		fi
+		zip -0 "./${filename}" "${css}" > /dev/null
+	done
+	cd "${tmp_dir}"
+	mv "./${filename}" "${output_dir}/"
 	rm "${tmp_dir:?}/"* -r
 done
 
