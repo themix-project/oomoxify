@@ -5,7 +5,7 @@ set -ueo pipefail
 root="$(readlink -f "$(dirname "$0")")"
 
 
-spotify_apps_path="/usr/share/spotify/Apps"
+spotify_apps_path="/opt/spotify/Apps"
 backup_dir="${HOME}/.config/oomox/spotify_backup"
 
 
