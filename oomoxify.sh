@@ -199,12 +199,12 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			-e "s/179443/oomox_pressed_selection_color/gI" \
 			-e "s/14833B/oomox_pressed_selection_color/gI" \
 			\
-			-e "s/282828/oomox_main_bg/g" \
-			-e "s/121212/oomox_main_bg/g" \
-			-e "s/rgba(18, 18, 18, [0-9\.]\+)/#oomox_main_bg/g" \
-			-e "s/181818/oomox_area_bg/g" \
+			-e "s/282828/oomox_area_bg/g" \
+			-e "s/121212/oomox_area_bg/g" \
+			-e "s/rgba(18, 18, 18, [0-9\.]\+)/#oomox_area_bg/g" \
+			-e "s/181818/oomox_main_bg/g" \
 			-e "s/rgba(18,19,20,[0-9\.]\+)/#oomox_area_bg88/g" \
-			-e "s/#000000/#oomox_area_bg/g" \
+			-e "s/#000000/#oomox_main_bg/g" \
 			-e "s/333333/oomox_selected_row_bg/g" \
 			-e "s/3f3f3f/oomox_selected_row_bg/g" \
 			-e "s/535353/oomox_selected_row_bg/g" \
@@ -215,8 +215,8 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			-e "s/rgba(24, 24, 24, 0)/#oomox_area_bg44/g" \
 			-e "s/rgba(24, 24, 24, 0\.[6,8])/#oomox_area_bg88/g" \
 			-e "s/rgba(18, 19, 20, [0-9\.]\+)/#oomox_area_bg88/g" \
-			-e "s/#000011/#oomox_area_bg/g" \
-			-e "s/#0a1a2d/#oomox_area_bg/g" \
+			-e "s/#000011/#oomox_main_bg/g" \
+			-e "s/#0a1a2d/#oomox_main_bg/g" \
 			\
 			-e "s/ffffff/oomox_accent_fg/gI" \
 			-e "s/f8f8f7/oomox_hover_text/gI" \
@@ -246,18 +246,18 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			-e "s/hsla(0,0%,100%,.9)/#oomox_main_fg/gI" \
 			-e "s/hsla(0,0%,100%,.7)/#oomox_main_fg/gI" \
 			-e "s/#ddd;/#oomox_main_fg;/g" \
-			-e "s/#000;/#oomox_area_bg;/g" \
-			-e "s/#000 /#oomox_area_bg /g" \
+			-e "s/#000;/#oomox_main_bg;/g" \
+			-e "s/#000 /#oomox_main_bg /g" \
 			-e "s/#333;/#oomox_selected_row_bg;/gI" \
 			-e "s/#333 /#oomox_selected_row_bg /gI" \
 			-e "s/#444;/#oomox_selected_area_bg;/gI" \
 			-e "s/#444 /#oomox_selected_area_bg /gI" \
 			-e "s/#fff;/#oomox_accent_fg;/gI" \
 			-e "s/#fff /#oomox_accent_fg /gI" \
-			-e "s/ black;/ #oomox_area_bg;/g" \
-			-e "s/ black / #oomox_area_bg /g" \
-			-e "s/ gray / #oomox_main_bg /g" \
-			-e "s/ gray;/ #oomox_main_bg;/g" \
+			-e "s/ black;/ #oomox_main_bg;/g" \
+			-e "s/ black / #oomox_main_bg /g" \
+			-e "s/ gray / #oomox_area_bg /g" \
+			-e "s/ gray;/ #oomox_area_bg;/g" \
 			-e "s/ lightgray / #oomox_main_fg /g" \
 			-e "s/ lightgray;/ #oomox_main_fg;/g" \
 			-e "s/ white;/ #oomox_accent_fg;/gI" \
@@ -267,7 +267,7 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			-e "s/rgba(0,0,0,[0-9\.]\+)/oomox_cover_overlay/g" \
 			\
 			-e "s/#fff/#oomox_accent_fg/gI" \
-			-e "s/#000/#oomox_area_bg/gI" \
+			-e "s/#000/#oomox_main_bg/gI" \
 			-e "s/border-radius[: ]\+500px/border-radius:${ROUNDNESS}px/gI" \
 			"${css_filepath}"
 		if [[ $debug != '0' ]] && grep -q "${debug}" "${css_filepath}" ; then
