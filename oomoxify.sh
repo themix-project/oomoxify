@@ -296,8 +296,11 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			"${css_filepath}"
 		fi
 		echo "
-		.SearchInput__input {
-			background-color: #${area_bg} !important;
+		.SearchInput__input, input[data-testid='search-input'] {
+			background-color: #${main_bg} !important;
+			color: #${main_fg} !important;
+		}
+			div[role='search'] svg {
 			color: #${main_fg} !important;
 		}
 
@@ -343,6 +346,8 @@ for archive_path in "${backup_dir}"/*.spa ; do
 		}
 
 		/* added for 1.1.55.498: */
+		div[data-testid='scroll-wrapper'] button[aria-label='Next'],
+		div[data-testid='scroll-wrapper'] button[aria-label='Previous'],
 		button[data-testid=\"play-button\"],
 		button[data-testid=\"control-button-play\"],
 		button[data-testid=\"control-button-pause\"] {
