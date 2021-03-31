@@ -174,7 +174,7 @@ if [[ ! -d "${backup_dir}" ]] ; then
 	echo "${spotify_version}" > "${backup_file}"
 fi
 
-# set app.enable-developer-mode=true in prefs for debugging
+# set `app.enable-developer-mode=true` in prefs for debugging
 
 cd "${root}"
 for archive_path in "${backup_dir}"/*.spa ; do
