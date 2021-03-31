@@ -346,8 +346,8 @@ for archive_path in "${backup_dir}"/*.spa ; do
 		button[data-testid=\"play-button\"],
 		button[data-testid=\"control-button-play\"],
 		button[data-testid=\"control-button-pause\"] {
-			color: #${BTN_FG:-$main_bg} !important;
-			background-color: #${BTN_BG:-$main_fg} !important;
+			color: #${HDR_BTN_FG:-$main_bg} !important;
+			background-color: #${HDR_BTN_BG:-$main_fg} !important;
 		}
 		div[role='gridcell'] div img {
 			filter: grayscale(1);
