@@ -346,6 +346,7 @@ for archive_path in "${backup_dir}"/*.spa ; do
 		}
 
 		/* added for 1.1.55.498: */
+		/* play button: */
 		div[data-testid='scroll-wrapper'] button[aria-label='Next'],
 		div[data-testid='scroll-wrapper'] button[aria-label='Previous'],
 		button[data-testid=\"play-button\"],
@@ -354,6 +355,11 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			color: #${HDR_BTN_FG:-$main_bg} !important;
 			background-color: #${HDR_BTN_BG:-$main_fg} !important;
 		}
+		/* play animation in left sidebar: */
+		div[data-testid='rootlist-item'] button[aria-label='Playing'] {
+			color: #${SPOTIFY_PROTO_SEL};
+		}
+		/* play animation in playlist: */
 		div[role='gridcell'] div img {
 			filter: grayscale(1);
 		}
