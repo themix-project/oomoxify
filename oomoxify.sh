@@ -371,6 +371,10 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			* {
 				font-weight: 400 !important;
 			}
+			section[data-testid='playlist-page'] h1 {
+				font-size: 50px !important;
+				line-height: 50px !important;
+			}
 			" >> "${css_filepath}"
 		fi
 		zip -0 "./${archive_name}" "${css_filepath}" > /dev/null
