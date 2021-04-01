@@ -364,6 +364,10 @@ for archive_path in "${backup_dir}"/*.spa ; do
 				font-family: ${replace_font} !important;
 				font-weight: 400 !important;
 			}
+			section[data-testid='playlist-page'] h1 {
+				font-size: 50px !important;
+				line-height: 50px !important;
+			}
 			" >> "${css_filepath}"
 		fi
 		if [ -n "${fix_font_weight:-}" ] && [ -z "${replace_font:-}" ] ; then
