@@ -357,7 +357,22 @@ for archive_path in "${backup_dir}"/*.spa ; do
 		div[role='gridcell'] div img {
 			filter: grayscale(1);
 		}
+		div[data-testid='action-bar-row'] button[data-testid='play-button'] {
+			--size: 40px !important;
+			margin-right: 24px !important;
+		}
+		div[data-testid='action-bar-row'] button[data-testid='play-button'] svg {
+			height: 16px !important;
+			width: 16px !important;
+		}
+		section[data-testid='playlist-page'] > div:nth-child(2) > div.contentSpacing {
+			padding: 2px 32px !important;
+		}
+		section[data-testid='playlist-page'] > div {
+			min-height: 320px !important;
+		}
 		" >> "${css_filepath}"
+
 		if [ -n "${replace_font:-}" ] ; then
 			echo "
 			* {
