@@ -374,9 +374,6 @@ for archive_path in "${backup_dir}"/*.spa ; do
 		section[data-testid='playlist-page'] > div:nth-child(2) > div.contentSpacing {
 			padding: 2px 32px !important;
 		}
-		section[data-testid='playlist-page'] > div {
-			min-height: 320px !important;
-		}
 		" >> "${css_filepath}"
 
 		if [ -n "${replace_font:-}" ] ; then
