@@ -374,6 +374,10 @@ for archive_path in "${backup_dir}"/*.spa ; do
 		section[data-testid='playlist-page'] > div:nth-child(2) > div.contentSpacing {
 			padding: 2px 32px !important;
 		}
+
+		div[aria-label='Already added'] button:last-child {
+			color: #${SEL_FG:-$SPOTIFY_PROTO_BG};
+		}
 		" >> "${css_filepath}"
 
 		if [ -n "${replace_font:-}" ] ; then
