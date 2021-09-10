@@ -138,7 +138,8 @@ class SpotifyExportDialog(FileBasedExportDialog):
 class Plugin(OomoxExportPlugin):
 
     name = 'spotify'
-    display_name = _("Apply Spotif_y Theme…")
+    display_name = 'Oomoxify'
+    export_text = _("Apply Spotif_y Theme…")
     export_dialog = SpotifyExportDialog
 
     theme_model_extra = [
