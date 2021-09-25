@@ -306,7 +306,7 @@ for archive_path in "${backup_dir}"/*.spa ; do
 		}
 
 		.contentSpacing h1 {
-			color: #${main_fg} !important;
+			color: #${accent_fg} !important;
 		}
 
 		input, .button, button, button *, .button * {
