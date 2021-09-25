@@ -242,7 +242,8 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			-e "s/rgba(24, 24, 24, [0-9\.]\+)/#oomox_top_and_button_bg/g" \
 			-e "s/rgba(25,20,20,[0-9\.]\+)/#oomox_top_and_button_bg/g" \
 			-e "s/rgba(160, 160, 160, [0-9\.]\+)/#oomox_main_fg/g" \
-			-e "s/rgba(255, 255, 255, ...)/#oomox_main_fg/gI" \
+			-e "s/rgba(255, 255, 255,[0-9\.]\+)/#oomox_main_fg/gI" \
+			-e "s/rgba(255,255,255,[0-9\.]\+)/#oomox_main_fg/gI" \
 			-e "s/hsla(0,0%,100%,.9)/#oomox_main_fg/gI" \
 			-e "s/hsla(0,0%,100%,.7)/#oomox_main_fg/gI" \
 			-e "s/#ddd;/#oomox_main_fg;/g" \
@@ -300,7 +301,11 @@ for archive_path in "${backup_dir}"/*.spa ; do
 			background-color: #${main_bg} !important;
 			color: #${main_fg} !important;
 		}
-			div[role='search'] svg {
+		div[role='search'] svg {
+			color: #${main_fg} !important;
+		}
+
+		.contentSpacing h1 {
 			color: #${main_fg} !important;
 		}
 
