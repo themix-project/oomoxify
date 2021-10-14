@@ -17,6 +17,7 @@ md5sums=('SKIP')
 depends=(
 	'grep'
 	'bc'
+	'unzip'
 	'zip'
 	'polkit'
 )
