@@ -5,7 +5,7 @@ from gi.repository import Gtk
 
 from oomox_gui.export_common import FileBasedExportDialog, ExportConfig
 from oomox_gui.plugin_api import OomoxExportPlugin
-from oomox_gui.i18n import _
+from oomox_gui.i18n import translate
 
 
 PLUGIN_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -57,7 +57,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
         self.font_radio_default = \
             Gtk.RadioButton.new_with_mnemonic_from_widget(
                 None,
-                _("Don't change _default font")
+                translate("Don't change _default font")
             )
         self.font_radio_default.connect(
             "toggled", self.on_font_radio_toggled, VALUE_FONT_DEFAULT
@@ -67,7 +67,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
         self.font_radio_normalize = \
             Gtk.RadioButton.new_with_mnemonic_from_widget(
                 self.font_radio_default,
-                _("_Normalize font weight")
+                translate("_Normalize font weight")
             )
         self.font_radio_normalize.connect(
             "toggled", self.on_font_radio_toggled, VALUE_FONT_NORMALIZE
@@ -76,7 +76,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
 
         self.font_radio_custom = Gtk.RadioButton.new_with_mnemonic_from_widget(
             self.font_radio_default,
-            _("Use custom _font:")
+            translate("Use custom _font:")
         )
         self.font_radio_custom.connect(
             "toggled", self.on_font_radio_toggled, VALUE_FONT_CUSTOM
@@ -97,7 +97,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
     def __init__(self, transient_for, colorscheme, theme_name):
         super().__init__(
             transient_for=transient_for,
-            headline=_("Spotify Options"),
+            headline=translate("Spotify Options"),
             colorscheme=colorscheme,
             theme_name=theme_name
         )
@@ -112,7 +112,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
         )
 
         export_options_headline = Gtk.Label()
-        export_options_headline.set_markup('<b>' + _("Font Options") + '</b>')
+        export_options_headline.set_markup('<b>' + translate("Font Options") + '</b>')
         export_options_headline.set_justify(Gtk.Justification.LEFT)
         export_options_headline.set_alignment(0.0, 0.0)
         self.options_box.add(export_options_headline)
@@ -120,7 +120,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
         self._init_radios()
 
         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        spotify_path_label = Gtk.Label(label=_('Spotify _path:'),
+        spotify_path_label = Gtk.Label(label=translate('Spotify _path:'),
                                        use_underline=True)
         self.spotify_path_entry = Gtk.Entry(text=self.export_config[OPTION_SPOTIFY_PATH])
         spotify_path_label.set_mnemonic_widget(self.spotify_path_entry)
@@ -139,30 +139,30 @@ class Plugin(OomoxExportPlugin):
 
     name = 'spotify'
     display_name = 'Oomoxify'
-    export_text = _("Apply Spotif_y Theme…")
+    export_text = translate("Apply Spotif_y Theme…")
     export_dialog = SpotifyExportDialog
 
     theme_model_extra = [
         {
             'type': 'separator',
-            'display_name': _('Spotify')
+            'display_name': translate('Spotify')
         },
         {
             'key': 'SPOTIFY_PROTO_BG',
             'type': 'color',
             'fallback_key': 'HDR_BG',
-            'display_name': _('Background'),
+            'display_name': translate('Background'),
         },
         {
             'key': 'SPOTIFY_PROTO_FG',
             'type': 'color',
             'fallback_key': 'HDR_FG',
-            'display_name': _('Foreground'),
+            'display_name': translate('Foreground'),
         },
         {
             'key': 'SPOTIFY_PROTO_SEL',
             'type': 'color',
             'fallback_key': 'SEL_BG',
-            'display_name': _('Accent Color'),
+            'display_name': translate('Accent Color'),
         },
     ]
