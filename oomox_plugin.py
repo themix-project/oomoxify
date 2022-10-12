@@ -140,6 +140,14 @@ class Plugin(OomoxExportPlugin):
     name = 'spotify'
     display_name = 'Oomoxify'
     export_text = translate("Apply Spotif_y Theme…")
+    about_text = translate('Apply the current theme to Spotify Desktop app.')
+    about_links = [
+        {
+            'name': translate('Homepage'),
+            'url': 'https://github.com/themix-project/oomoxify/',
+        },
+    ]
+
     export_dialog = SpotifyExportDialog
 
     theme_model_extra = [
