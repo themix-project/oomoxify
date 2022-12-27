@@ -49,7 +49,6 @@ do
 	case ${1} in
 		-h|--help)
 			print_usage
-			exit 0
 		;;
 		-f|--font)
 			replace_font="${2}"
@@ -80,7 +79,6 @@ do
 			if [[ "${1}" == -* ]] || [[ ${THEME-} ]]; then
 				echo "unknown option ${1}"
 				print_usage
-				exit 2
 			fi
 			THEME="${1}"
 		;;
@@ -153,6 +151,7 @@ button_border_color="$(mix "${main_fg}" "${main_bg}" 0.5)"
 tmp_dir="$(mktemp -d)"
 output_dir="$(mktemp -d)"
 log_file=$(mktemp)
+# shellcheck disable=SC2317
 function post_clean_up {
 	rm -r "${tmp_dir}" || true
 	rm -r "${output_dir}" || true
@@ -446,4 +445,4 @@ done
 
 echo
 echo "== DONE"
-exit ${exit_code}
+exit "$exit_code"
