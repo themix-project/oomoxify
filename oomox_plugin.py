@@ -3,10 +3,9 @@ import os
 
 from gi.repository import Gtk
 
-from oomox_gui.export_common import FileBasedExportDialog, ExportConfig
-from oomox_gui.plugin_api import OomoxExportPlugin
+from oomox_gui.export_common import ExportConfig, FileBasedExportDialog
 from oomox_gui.i18n import translate
-
+from oomox_gui.plugin_api import OomoxExportPlugin
 
 PLUGIN_DIR = os.path.dirname(os.path.realpath(__file__))
 OOMOXIFY_SCRIPT_PATH = os.path.join(
