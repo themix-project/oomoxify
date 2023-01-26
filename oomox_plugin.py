@@ -9,7 +9,7 @@ from oomox_gui.plugin_api import OomoxExportPlugin
 
 PLUGIN_DIR = os.path.dirname(os.path.realpath(__file__))
 OOMOXIFY_SCRIPT_PATH = os.path.join(
-    PLUGIN_DIR, "oomoxify.sh"
+    PLUGIN_DIR, "oomoxify.sh",
 )
 
 
@@ -56,29 +56,29 @@ class SpotifyExportDialog(FileBasedExportDialog):
         self.font_radio_default = \
             Gtk.RadioButton.new_with_mnemonic_from_widget(
                 None,
-                translate("Don't change _default font")
+                translate("Don't change _default font"),
             )
         self.font_radio_default.connect(
-            "toggled", self.on_font_radio_toggled, VALUE_FONT_DEFAULT
+            "toggled", self.on_font_radio_toggled, VALUE_FONT_DEFAULT,
         )
         self.options_box.add(self.font_radio_default)
 
         self.font_radio_normalize = \
             Gtk.RadioButton.new_with_mnemonic_from_widget(
                 self.font_radio_default,
-                translate("_Normalize font weight")
+                translate("_Normalize font weight"),
             )
         self.font_radio_normalize.connect(
-            "toggled", self.on_font_radio_toggled, VALUE_FONT_NORMALIZE
+            "toggled", self.on_font_radio_toggled, VALUE_FONT_NORMALIZE,
         )
         self.options_box.add(self.font_radio_normalize)
 
         self.font_radio_custom = Gtk.RadioButton.new_with_mnemonic_from_widget(
             self.font_radio_default,
-            translate("Use custom _font:")
+            translate("Use custom _font:"),
         )
         self.font_radio_custom.connect(
-            "toggled", self.on_font_radio_toggled, VALUE_FONT_CUSTOM
+            "toggled", self.on_font_radio_toggled, VALUE_FONT_CUSTOM,
         )
         self.options_box.add(self.font_radio_custom)
 
@@ -86,7 +86,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
         self.options_box.add(self.font_name_entry)
 
         self.font_name_entry.set_sensitive(
-            self.export_config[OPTION_FONT_OPTIONS] == VALUE_FONT_CUSTOM
+            self.export_config[OPTION_FONT_OPTIONS] == VALUE_FONT_CUSTOM,
         )
         if self.export_config[OPTION_FONT_OPTIONS] == VALUE_FONT_NORMALIZE:
             self.font_radio_normalize.set_active(True)
@@ -98,7 +98,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
             transient_for=transient_for,
             headline=translate("Spotify Options"),
             colorscheme=colorscheme,
-            theme_name=theme_name
+            theme_name=theme_name,
         )
         self.label.hide()
         self.export_config = ExportConfig(
@@ -107,7 +107,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
                 OPTION_SPOTIFY_PATH: "/usr/share/spotify/Apps",
                 OPTION_FONT_NAME: "sans-serif",
                 OPTION_FONT_OPTIONS: VALUE_FONT_DEFAULT,
-            }
+            },
         )
 
         export_options_headline = Gtk.Label()
@@ -152,7 +152,7 @@ class Plugin(OomoxExportPlugin):
     theme_model_extra = [
         {
             "type": "separator",
-            "display_name": translate("Spotify")
+            "display_name": translate("Spotify"),
         },
         {
             "key": "SPOTIFY_PROTO_BG",
