@@ -13,12 +13,12 @@ OOMOXIFY_SCRIPT_PATH = os.path.join(
 )
 
 
-OPTION_SPOTIFY_PATH = 'spotify_path'
-OPTION_FONT_NAME = 'font_name'
-OPTION_FONT_OPTIONS = 'font_options'
-VALUE_FONT_DEFAULT = 'default'
-VALUE_FONT_NORMALIZE = 'normalize'
-VALUE_FONT_CUSTOM = 'custom'
+OPTION_SPOTIFY_PATH = "spotify_path"
+OPTION_FONT_NAME = "font_name"
+OPTION_FONT_OPTIONS = "font_options"
+VALUE_FONT_DEFAULT = "default"
+VALUE_FONT_NORMALIZE = "normalize"
+VALUE_FONT_CUSTOM = "custom"
 
 
 class SpotifyExportDialog(FileBasedExportDialog):
@@ -35,13 +35,13 @@ class SpotifyExportDialog(FileBasedExportDialog):
             "bash",
             OOMOXIFY_SCRIPT_PATH,
             self.temp_theme_path,
-            '--gui',
-            '--spotify-apps-path', self.export_config[OPTION_SPOTIFY_PATH],
+            "--gui",
+            "--spotify-apps-path", self.export_config[OPTION_SPOTIFY_PATH],
         ]
         if self.export_config[OPTION_FONT_OPTIONS] == VALUE_FONT_NORMALIZE:
-            export_args.append('--font-weight')
+            export_args.append("--font-weight")
         elif self.export_config[OPTION_FONT_OPTIONS] == VALUE_FONT_CUSTOM:
-            export_args.append('--font')
+            export_args.append("--font")
             export_args.append(self.export_config[OPTION_FONT_NAME])
 
         self.command = export_args
@@ -102,7 +102,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
         )
         self.label.hide()
         self.export_config = ExportConfig(
-            config_name='spotify',
+            config_name="spotify",
             default_config={
                 OPTION_SPOTIFY_PATH: "/usr/share/spotify/Apps",
                 OPTION_FONT_NAME: "sans-serif",
@@ -111,7 +111,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
         )
 
         export_options_headline = Gtk.Label()
-        export_options_headline.set_markup('<b>' + translate("Font Options") + '</b>')
+        export_options_headline.set_markup("<b>" + translate("Font Options") + "</b>")
         export_options_headline.set_justify(Gtk.Justification.LEFT)
         export_options_headline.set_alignment(0.0, 0.0)
         self.options_box.add(export_options_headline)
@@ -119,7 +119,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
         self._init_radios()
 
         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        spotify_path_label = Gtk.Label(label=translate('Spotify _path:'),
+        spotify_path_label = Gtk.Label(label=translate("Spotify _path:"),
                                        use_underline=True)
         self.spotify_path_entry = Gtk.Entry(text=self.export_config[OPTION_SPOTIFY_PATH])
         spotify_path_label.set_mnemonic_widget(self.spotify_path_entry)
@@ -136,14 +136,14 @@ class SpotifyExportDialog(FileBasedExportDialog):
 
 class Plugin(OomoxExportPlugin):
 
-    name = 'spotify'
-    display_name = 'Oomoxify'
+    name = "spotify"
+    display_name = "Oomoxify"
     export_text = translate("Apply Spotif_y Theme…")
-    about_text = translate('Apply the current theme to Spotify Desktop app.')
+    about_text = translate("Apply the current theme to Spotify Desktop app.")
     about_links = [
         {
-            'name': translate('Homepage'),
-            'url': 'https://github.com/themix-project/oomoxify/',
+            "name": translate("Homepage"),
+            "url": "https://github.com/themix-project/oomoxify/",
         },
     ]
 
@@ -151,25 +151,25 @@ class Plugin(OomoxExportPlugin):
 
     theme_model_extra = [
         {
-            'type': 'separator',
-            'display_name': translate('Spotify')
+            "type": "separator",
+            "display_name": translate("Spotify")
         },
         {
-            'key': 'SPOTIFY_PROTO_BG',
-            'type': 'color',
-            'fallback_key': 'HDR_BG',
-            'display_name': translate('Background'),
+            "key": "SPOTIFY_PROTO_BG",
+            "type": "color",
+            "fallback_key": "HDR_BG",
+            "display_name": translate("Background"),
         },
         {
-            'key': 'SPOTIFY_PROTO_FG',
-            'type': 'color',
-            'fallback_key': 'HDR_FG',
-            'display_name': translate('Foreground'),
+            "key": "SPOTIFY_PROTO_FG",
+            "type": "color",
+            "fallback_key": "HDR_FG",
+            "display_name": translate("Foreground"),
         },
         {
-            'key': 'SPOTIFY_PROTO_SEL',
-            'type': 'color',
-            'fallback_key': 'SEL_BG',
-            'display_name': translate('Accent Color'),
+            "key": "SPOTIFY_PROTO_SEL",
+            "type": "color",
+            "fallback_key": "SEL_BG",
+            "display_name": translate("Accent Color"),
         },
     ]
