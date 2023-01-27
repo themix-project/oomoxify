@@ -1,4 +1,5 @@
 import os
+from typing import TYPE_CHECKING
 
 from gi.repository import Gtk
 
@@ -6,8 +7,14 @@ from oomox_gui.export_common import ExportConfig, FileBasedExportDialog
 from oomox_gui.i18n import translate
 from oomox_gui.plugin_api import OomoxExportPlugin
 
-PLUGIN_DIR = os.path.dirname(os.path.realpath(__file__))
-OOMOXIFY_SCRIPT_PATH = os.path.join(
+if TYPE_CHECKING:
+    from typing import Any, Final
+
+    from oomox_gui.theme_file import ThemeT
+
+
+PLUGIN_DIR: "Final" = os.path.dirname(os.path.realpath(__file__))
+OOMOXIFY_SCRIPT_PATH: "Final" = os.path.join(
     PLUGIN_DIR, "oomoxify.sh",
 )
 
@@ -25,7 +32,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
     export_config = None
     timeout = 120
 
-    def do_export(self):
+    def do_export(self) -> None:
         self.export_config[OPTION_FONT_NAME] = self.font_name_entry.get_text()
         self.export_config[OPTION_SPOTIFY_PATH] = self.spotify_path_entry.get_text()
         self.export_config.save()
@@ -46,12 +53,12 @@ class SpotifyExportDialog(FileBasedExportDialog):
         self.command = export_args
         super().do_export()
 
-    def on_font_radio_toggled(self, button, value):
+    def on_font_radio_toggled(self, button: Gtk.Button, value: bool) -> None:
         if button.get_active():
             self.export_config[OPTION_FONT_OPTIONS] = value
             self.font_name_entry.set_sensitive(value == VALUE_FONT_CUSTOM)
 
-    def _init_radios(self):
+    def _init_radios(self) -> None:
         self.font_radio_default = \
             Gtk.RadioButton.new_with_mnemonic_from_widget(
                 None,
@@ -92,7 +99,13 @@ class SpotifyExportDialog(FileBasedExportDialog):
         if self.export_config[OPTION_FONT_OPTIONS] == VALUE_FONT_CUSTOM:
             self.font_radio_custom.set_active(True)
 
-    def __init__(self, transient_for, colorscheme, theme_name):
+    def __init__(
+            self,
+            transient_for: Gtk.Window,
+            colorscheme: "ThemeT",
+            theme_name: str,
+            **_kwargs: "Any",
+    ) -> None:
         super().__init__(
             transient_for=transient_for,
             headline=translate("Spotify Options"),
