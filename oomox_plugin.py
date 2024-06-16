@@ -19,12 +19,12 @@ OOMOXIFY_SCRIPT_PATH: "Final" = os.path.join(
 )
 
 
-OPTION_SPOTIFY_PATH = "spotify_path"
-OPTION_FONT_NAME = "font_name"
-OPTION_FONT_OPTIONS = "font_options"
-VALUE_FONT_DEFAULT = "default"
-VALUE_FONT_NORMALIZE = "normalize"
-VALUE_FONT_CUSTOM = "custom"
+OPTION_SPOTIFY_PATH: "Final" = "spotify_path"
+OPTION_FONT_NAME: "Final" = "font_name"
+OPTION_FONT_OPTIONS: "Final" = "font_options"
+VALUE_FONT_DEFAULT: "Final" = "default"
+VALUE_FONT_NORMALIZE: "Final" = "normalize"
+VALUE_FONT_CUSTOM: "Final" = "custom"
 
 
 class SpotifyExportDialog(FileBasedExportDialog):
