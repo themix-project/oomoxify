@@ -47,8 +47,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
         if self.export_config[OPTION_FONT_OPTIONS] == VALUE_FONT_NORMALIZE:
             export_args.append("--font-weight")
         elif self.export_config[OPTION_FONT_OPTIONS] == VALUE_FONT_CUSTOM:
-            export_args.append("--font")
-            export_args.append(self.export_config[OPTION_FONT_NAME])
+            export_args.extend(("--font", self.export_config[OPTION_FONT_NAME]))
 
         self.command = export_args
         super().do_export()
