@@ -52,7 +52,7 @@ class SpotifyExportDialog(FileBasedExportDialog):
         self.command = export_args
         super().do_export()
 
-    def on_font_radio_toggled(self, button: Gtk.Button, value: bool) -> None:
+    def on_font_radio_toggled(self, button: Gtk.Button, value: bool) -> None:  # noqa: FBT001
         if button.get_active():
             self.export_config[OPTION_FONT_OPTIONS] = value
             self.font_name_entry.set_sensitive(value == VALUE_FONT_CUSTOM)
