@@ -103,13 +103,14 @@ class SpotifyExportDialog(FileBasedExportDialog):
             transient_for: Gtk.Window,
             colorscheme: "ThemeT",
             theme_name: str,
-            **_kwargs: "Any",
+            **kwargs: "Any",
     ) -> None:
         super().__init__(
             transient_for=transient_for,
             headline=translate("Spotify Options"),
             colorscheme=colorscheme,
             theme_name=theme_name,
+            **kwargs,
         )
         self.label.hide()
         self.export_config = ExportConfig(
