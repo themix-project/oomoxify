@@ -16,7 +16,6 @@ install:
 		packaging/ \
 			$(PACKAGING_TMP_DIR)/
 	sed -i -e 's|/opt/oomox/|$(APPDIR)/|g' $(PACKAGING_TMP_DIR)/packaging/bin/*
-	chmod a+x "$(PACKAGING_TMP_DIR)/packaging/bin/"*
 	install -d $(DEST_PREFIX)/bin/
 	install -Dp -m 755 "$(PACKAGING_TMP_DIR)/packaging/bin/$(CLI_NAME)" "$(DEST_PREFIX)/bin/"
 
@@ -26,5 +25,7 @@ install:
 		./oomoxify.sh \
 		./scripts/ \
 			$(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)/
+
+	$(RM) -r "$(PACKAGING_TMP_DIR)"
 
 all: install
