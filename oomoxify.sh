@@ -151,7 +151,7 @@ button_border_color="$(mix "${main_fg}" "${main_bg}" 0.5)"
 tmp_dir="$(mktemp -d)"
 output_dir="$(mktemp -d)"
 log_file=$(mktemp)
-# shellcheck disable=SC2317
+# shellcheck disable=SC2317,SC2329
 function post_clean_up {
 	rm -r "${tmp_dir}" || true
 	rm -r "${output_dir}" || true
